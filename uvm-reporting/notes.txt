@@ -4,3 +4,7 @@
  - using uvm_info instead of display automatically shows the reporter(based on the ID)
  - it also shows simulation time 
  - ex: UVM_INFO /home/runner/testbench.sv(8) @ 50: reporter [TB_TOP] This is a message to test UVM_INFO
+ 
+2. When extending any class, constructor method (new()) is always required to connect the class to UVM
+
+3. To change verbosity globally add in the run options (via cmd line) +UVM_VERBOSITY=UVM_HIGH(set depend on required config)
