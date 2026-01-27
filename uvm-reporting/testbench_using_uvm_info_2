@@ -1,0 +1,34 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class driver extends uvm_driver;
+  `uvm_component_utils(driver); // register driver class
+  
+  function new(string path, uvm_component parent); // initialize construct
+    super.new(path, parent);
+  endfunction
+  
+  task run();
+    `uvm_info("DRV1", "Sample reporting in a UVM class", UVM_HIGH);
+    `uvm_info("DRV2", "Sample reporting in a UVM class", UVM_HIGH);
+  endtask
+endclass
+
+module tb;
+  // instantiate driver class
+  // not needed in UVM, added for using specific reporting only
+  driver drv;
+  
+  initial begin
+    drv = new("DRV", null);
+    
+    //// reports DRV1
+    drv.set_report_id_verbosity("DRV1", UVM_HIGH);
+    drv.run();
+    #10;
+    
+    // reports both DRV1 and DRV2
+    drv.set_report_id_verbosity("DRV2", UVM_HIGH);
+    drv.run();
+  end
+endmodule
