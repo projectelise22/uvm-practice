@@ -8,3 +8,8 @@
 2. When extending any class, constructor method (new()) is always required to connect the class to UVM
 
 3. To change verbosity globally add in the run options (via cmd line) +UVM_VERBOSITY=UVM_HIGH(set depend on required config)
+
+4. UVM_ACTION values are bitwise, can use multiple actions for a severity
+ - for example: drv.set_report_severity_action(UVM_INFO, UVM_DISPLAY | UVM_EXIT);
+ 
+5. max_quit_count starts after setting it, be careful about this variable

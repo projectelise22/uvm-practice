@@ -13,6 +13,8 @@ class driver extends uvm_driver;
         `uvm_warning("DRV", "This is a warning message from driver");
         `uvm_error("DRV", "This is an error message from driver");
         #10;
+        `uvm_error("DRV", "This is another error message from driver");
+        #10;
         `uvm_fatal("DRV", "This is a fatal message from driver");
     endtask
 endclass
@@ -31,8 +33,13 @@ module tb;
         drv.run();
       
         // UVM_INFO will display and exit after running task
-        #10;
-        drv.set_report_severity_action(UVM_INFO, UVM_DISPLAY | UVM_EXIT);
+        // #10;
+        // drv.set_report_severity_action(UVM_INFO, UVM_DISPLAY | UVM_EXIT);
+        // drv.run();
+
+        // Set max_count for UVM_ERROR
+        // simulation will terminate after reaching it, default value is 0
+        drv.set_report_max_quit_count(2);
         drv.run();
     end
 endmodule
