@@ -12,4 +12,9 @@
 4. UVM_ACTION values are bitwise, can use multiple actions for a severity
  - for example: drv.set_report_severity_action(UVM_INFO, UVM_DISPLAY | UVM_EXIT);
  
-5. max_quit_count starts after setting it, be careful about this variable
+5. max_quit_count = upper threshold, quit_count = ends simulation when reached
+ - max_quit_count = 5, quit_count = 10 -> simulation finishes after 5 errors
+ - quit_count = 5, max_quit_count = 10 -> simulation still finishes after 5 errors
+ - if same test is ran again, and it produces more errors than before max_quit_count protects regression run
+ - note that both counts applies to total count of info, warning, error, and fatal (if count action is applied)
+ - by default, only UVM_ERROR has count action
