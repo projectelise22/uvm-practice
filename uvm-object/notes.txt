@@ -1,0 +1,32 @@
+UVM_OBJECT
+1. Static objects -> components that remain the same throughout the simulation
+   - example: driver, monitor, sequencer, scoreboard
+   -> created using UVM components
+   Dynamic objects -> components that change throughout simulation, only alive after task has been completed
+   - example: transactions (data)
+   - created using UVM objects (extending this class(uvm sequence item))
+   - uvm object is derived from uvm component class
+2. uvm_objects
+   - uvm_transaction
+   - uvm_sequence_item
+   - uvm_sequence
+3. uvm_components 
+   - uvm_driver
+   - uvm_sequencer
+   - uvm_monitor
+   - uvm_agent
+   - uvm_scoreboard
+   - uvm_env
+   - uvm_test
+4. Core methods -> field macros that provide automation for transaction classes: 
+   - print, record, copy, compare, create, clone, pack + unpack
+5. Core methods -> User defined methods are called do_* methods
+   - do_print, do_record, do_copy, do_compare, do_pack, do_unpack
+   - do_* methods can be modified to be more in-line with own implementation
+   - field macros are not as flexible as do_* methods
+6. `uvm_object_utils -> registers uvm object
+7. `uvm_field_* macros -> registering data fields
+8. It is up to your implementation but there are multiple ways to print for example
+   - Use automation methods by registering fields using field macros (print)
+   - Use do_* methods for more flexibility (do_print)
+   - Or go fully manual by using $display method
