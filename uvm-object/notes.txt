@@ -30,3 +30,8 @@ UVM_OBJECT
    - Use automation methods by registering fields using field macros (print)
    - Use do_* methods for more flexibility (do_print)
    - Or go fully manual by using $display method
+9. In UVM, whenever making a constructor(new function), use the build + create phase
+10. In field methods: Copy needs a constructor to the object, Clone does not.
+11. To run uvm in Vivado
+-> Project Settings -> Simulation -> Compilation -> xsim..xvlog.more_options* = -L uvm
+-> Project Settings -> Simulation -> Elaboration -> xsim..xelab.more_options* = -L uvm
