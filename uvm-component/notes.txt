@@ -5,3 +5,11 @@
 4. uvm_test is child, uvm_top is the parent
 5. a trick for the structure of a function or task inside a uvm class: 
    - function requires super.<method> while the task doesn't
+6. If you create an instance of a component class and the parent is pointing to null, then
+   uvm_top is the parent class like for ex:
+   comp c;
+   initial begin
+     c = comp::type_id::create("c", null);
+     c.build_phase(null);
+   end
+   - in real tb, only uvm_test is the child of uvm_top

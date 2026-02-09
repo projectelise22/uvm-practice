@@ -24,4 +24,16 @@ module tb;
     // in real tb, test is top of heirarchy and name of test will be run
     run_test("component");
   end
+
+  // the following will log a warning that build_phase is called explicitly
+  component c;
+  initial begin
+    #10;
+    c = component::type_id::create("c", null);
+    c.build_phase(null);
+  end
+
+  // Output Log
+  // # KERNEL: UVM_WARNING @ 10: c [UVM_DEPRECATED] build()/build_phase() has been called explicitly, outside of the phasing system. This usage of build is deprecated and may lead to unexpected behavior.
+  // # KERNEL: UVM_INFO /home/runner/testbench.sv(16) @ 10: c [component] Build phase message
 endmodule
