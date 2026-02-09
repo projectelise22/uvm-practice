@@ -1,0 +1,7 @@
+1. Remember that in UVM, test is not the root but uvm_top.
+2. When you want to use UVM, everything you implement will be handled by different phases
+3. Knowing the parent is required in uvm_component because it is a requirement whenever 
+   constructing this class
+4. uvm_test is child, uvm_top is the parent
+5. a trick for the structure of a function or task inside a uvm class: 
+   - function requires super.<method> while the task doesn't

@@ -1,0 +1,27 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+class component extends uvm_component;
+  // register to factory
+  `uvm_component_utils(component);
+  
+  // constructor
+  function new(string path, uvm_component parent);
+    super.new(path, parent);
+  endfunction
+  
+  // build_phase method
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+    `uvm_info("component", "Build phase message", UVM_NONE);
+  endfunction
+endclass
+
+module tb;
+  initial begin
+    // no need to instantiate component class
+    // just invoke run_test with the class name as argument
+    // in real tb, test is top of heirarchy and name of test will be run
+    run_test("component");
+  end
+endmodule
