@@ -13,3 +13,4 @@
      c.build_phase(null);
    end
    - in real tb, only uvm_test is the child of uvm_top
+7. Only components are scheduled by the UVM phase engine and allowed to consume simulation time and exists in uvm topology tree

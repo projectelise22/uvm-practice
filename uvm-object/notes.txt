@@ -1,11 +1,13 @@
 UVM_OBJECT
-1. Static objects -> components that remain the same throughout the simulation
+1. Static objects -> components that remain the same throughout the simulation, created once and stays alive 
    - example: driver, monitor, sequencer, scoreboard
-   -> created using UVM components
-   Dynamic objects -> components that change throughout simulation, only alive after task has been completed
+   -  created using UVM components
+   Dynamic objects -> components that change throughout simulation, repeatedly created and destroyed
    - example: transactions (data)
    - created using UVM objects (extending this class(uvm sequence item))
    - uvm object is derived from uvm component class
+   Should not be confused by static/dynamic types in system verilog
+   - classes are still dynamic because they are created during simulation, unlike modules, interfaces which are truly static
 2. uvm_objects
    - uvm_transaction
    - uvm_sequence_item
@@ -35,3 +37,4 @@ UVM_OBJECT
 11. To run uvm in Vivado
 -> Project Settings -> Simulation -> Compilation -> xsim..xvlog.more_options* = -L uvm
 -> Project Settings -> Simulation -> Elaboration -> xsim..xelab.more_options* = -L uvm
+12. Does not participate in uvm phases, only for storing data

@@ -1,0 +1,28 @@
+1. Processes done in a tb environment like the following are handled by simulation phases:
+   - configuring tb environment
+   - system reset
+   - applying stimulus to DUT
+   - comparing response to golden data
+   - generating report
+2. UVM runs the phases sequentially when a uvm_test is invoked
+3. Phases is either TCM (task) or non-TCM (function)
+   - whenever overriding a uvm function, always call super related method
+   - task ex: applying stimulus
+   - function ex: creating objects
+4. Construction Phases
+   - build_phase -> to create objects
+   - connect_phase -> to handle sharing of data
+   - end_of_elaboration_phase -> to adjust heirarchy 
+   - start_of_simulation_phase
+5. run_phase -> generation, applying stimulus and receiving response
+   - reset_phase -> pre_reset_phase/post_reset_phase, to reset the system to bring it to a known state
+   - configure_phase -> pre/post, initializing mem/arr/vars before generating stimulus
+   - main_phase -> pre/post, generating stimuli, collecting response
+   - shutdown_phase -> pre/post, to make sure that all stimuli is correctly applied and there is enough time to gather responses
+6. Cleanup phase -> collect and report data, to check if coverage goals are achieved
+   - extract_phase
+   - check_phase
+   - report_phase
+   - final_phase
+7. UVM uses top-down approach
+   - Test is called first then Env, so on and so forth

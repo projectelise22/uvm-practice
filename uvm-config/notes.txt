@@ -1,1 +1,7 @@
 1. uvm_config_db#() is used to share data between components, commonly used to share interface too
+2. Whenever you want to access an interface in a dynamic component (i.e. class), use virtual keyword
+   - sv does not allow dynamic components contain static components and we declare static components by instantation
+   - axi_if axi_vif(clk); -> not allowed inside a class
+   - virtual interface means that a handle/pointer is created for that instance that is created/instantiated elsewhere.
+   - tl;dr class cannot own interface, only point to an existing one
+3. 
