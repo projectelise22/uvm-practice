@@ -24,5 +24,21 @@
    - check_phase
    - report_phase
    - final_phase
-7. UVM uses top-down approach
-   - Test is called first then Env, so on and so forth
+7. Build_phase uses top-down approach, all others use bottom-up approach
+   - Top-down means test is called first then Env, so on and so forth
+8. Priority during build phase, which one will be created first?
+   - it works in a lexicographic order, so to make things simple if the components path whic are declared using lowercase alphabet,
+     component named starting "a" will be created first
+   - ex: b = driver::type_id::create("b", this);
+         a = monitor::type_id::create("a", this);
+         since path of monitor is "a", it will be created first
+9. If all components specific phase is not yet complete, it will not move to the next phase
+   - for ex: if driver's reset_phase already ended but monitor's did not yet end, simulation will not move to the next phase.
+10. Same as #9, drain time will be implemented to a phase of all/multiple components only after the phase of those components are done.
+11. In the run options:
+    - Add +UVM_PHASE_TRACE to track the phases, sample log:
+    # KERNEL: UVM_INFO @ 0: reporter [RNTST] Running test test...
+    # KERNEL: UVM_INFO ./uvm-1.2/src/base/uvm_phase.svh(1345) @ 0: reporter [PH/TRC/STRT] Phase 'common' (id=21) Starting phase
+    # KERNEL: UVM_INFO ./uvm-1.2/src/base/uvm_phase.svh(1620) @ 0: reporter [PH/TRC/DONE] Phase 'common' (id=21) Completed phase
+    # KERNEL: UVM_INFO ./uvm-1.2/src/base/uvm_phase.svh(1655) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'common.build' (id=24) Scheduled from phase common
+    - Add +UVM_OBJECTION_TRACE to track the objections

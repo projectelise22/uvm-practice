@@ -57,7 +57,7 @@ class test extends uvm_test;
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     e = env::type_id::create("e", this);
-    `uvm_info("env", "Test build phase", UVM_NONE);
+    `uvm_info("test", "Test build phase", UVM_NONE);
   endfunction  
 endclass
 
@@ -67,9 +67,9 @@ module tb;
   end
 endmodule
 
-// Output Log
+// Output Log Build Phase behaves in a top-down approach
 // # KERNEL: UVM_INFO @ 0: reporter [RNTST] Running test test...
-// # KERNEL: UVM_INFO /home/runner/testbench.sv(60) @ 0: uvm_test_top [env] Test build phase
+// # KERNEL: UVM_INFO /home/runner/testbench.sv(60) @ 0: uvm_test_top [test] Test build phase
 // # KERNEL: UVM_INFO /home/runner/testbench.sv(44) @ 0: uvm_test_top.e [env] Env build phase
 // # KERNEL: UVM_INFO /home/runner/testbench.sv(13) @ 0: uvm_test_top.e.drv [driver] Driver build phase
 // # KERNEL: UVM_INFO /home/runner/testbench.sv(26) @ 0: uvm_test_top.e.mon [monitor] Monitor build phase
