@@ -22,3 +22,6 @@
    - put is the faucet, export is the pipe, imp is the water tank
    - somewhere someone sends data(put), someone forwards the request(export), someone implements it(imp)
    - an error occurs if you only use put and export, because uvm will try to find a real put implementation
+8. Be careful not to forget datatypes when creating get/put implementation methods or else data will not be passed correctly (compile does not catch this as error)
+9. uvm_*get/put is used for one to one, uvm_analysis is used for one to many
+   - uvm_*get/put can be both blocking/non blocking, uvm_analysis can only be non-blocking
